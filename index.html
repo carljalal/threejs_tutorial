@@ -20,13 +20,42 @@ document.body.appendChild(renderer.domElement);
 const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshBasicMaterial({color:0x00ff00});
 const cube = new THREE.Mesh(geometry,material);
-scene.add(cube);
+const geo2 = new TextGeometry( 'Hello three.js!', {
+		font: "verdana",
+		size: 80,
+		height: 5,
+		curveSegments: 12,
+		bevelEnabled: true,
+		bevelThickness: 10,
+		bevelSize: 8,
+		bevelOffset: 0,
+		bevelSegments: 5
+	} );
+const cube2 = new THREE.Mesh(geo2,material)
+scene.add(cube2);
 
 camera.position.z = 5;
 camera.position.x = 1;
 renderer.render(scene, camera);
 
-
+window.addEventListener("keypress",(event)=>{
+    if(event.key=="w"){
+        camera.position.z-=.1
+        renderer.render(scene, camera);
+    }
+    if(event.key=="s"){
+        camera.position.z+=.1
+        renderer.render(scene, camera);
+    }
+    if(event.key=="a"){
+        camera.rotation.y-=.01
+        renderer.render(scene, camera);
+    }
+    if(event.key=="d"){
+        camera.rotation.y+=.01
+        renderer.render(scene, camera);
+    }
+})
 </script>
 
 
